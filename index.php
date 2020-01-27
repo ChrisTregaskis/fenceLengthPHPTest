@@ -7,7 +7,7 @@ $panel_length = 1500;
 //INPUTS:
 //total fence length input in meters
 $fence_length_input = 100;
-//total numebr of post & panel input
+//total number of post & panel input
 $post_number_input = 63;
 $panel_number_input = 62;
 //IF accepting post width and panel length inputs, ENSURE unit is mm ONLY
@@ -94,9 +94,17 @@ $fence_length_result = fence_length_calc($post_width, $post_number_input, $panel
 
 ///////////
 // DISPLAY:
-echo $number_of_posts . ' posts and ' . ' ' . $number_of_panels . ' panels needed based on a fence length requirement of ' . ' ' . $fence_length_input . ' meters.';
+
+echo 'line 1';
 echo '<br>';
+echo 'line 2';
+echo '<br>';
+
+
+
+echo $number_of_posts . ' posts and ' . ' ' . $number_of_panels . ' panels needed based on a fence length requirement of ' . $fence_length_input . ' meters.';
 echo '<br>';
 echo 'Based on ' . $post_number_input . ' number of posts and ' . $panel_number_input . ' number of panels, the fence length will be ' . $fence_length_result . ' meters.';
+echo '<br>';
 
 
