@@ -11,8 +11,8 @@ $panel_length = 1500;
 $fence_length_input = 100;
 // IF accepting post width and panel length inputs, ENSURE unit is mm ONLY
 // total number of post & panel input
-$post_number_input = 63;
-$panel_number_input = 62;
+$post_number_input = 64;
+$panel_number_input = 63;
 
 
 // calc fence length input into mm
@@ -39,22 +39,17 @@ $number_of_posts = $number_of_posts_check;
 $number_of_panels = $number_of_panels_check;
 $fence_length_result = fence_length_calc($post_width, $post_number_input, $panel_length, $panel_number_input);
 
-
-
-
-
-
-// DISPLAY TEST
-echo $number_of_posts . ' posts and ' . ' ' . $number_of_panels . ' panels needed based on a fence length requirement of ' . $fence_length_input . ' meters.';
-echo '<br>';
-echo 'Based on ' . $post_number_input . ' number of posts and ' . $panel_number_input . ' number of panels, the fence length will be ' . $fence_length_result . ' meters.';
-echo '<br>';
+// Potentionally use for the calculate button?
+function calculate_my_fence($num_of_pos, $num_of_pan) {
+    return ['number of posts' => $num_of_pos, 'number of panels' => $num_of_pan];
+}
 
 //Backup Result Call
 //$number_of_posts = post_calc($fence_length_mm, $post_total_percentage, $post_width);
 //$number_of_panels = panel_calc($fence_length_mm, $panel_total_percentage, $panel_length);
 
 ?>
+
 <!DOCTYPE html>
 <html lang="en-GB">
 
@@ -80,16 +75,18 @@ echo '<br>';
         </fieldset>
         <fieldset>
             <label>What is the rail measurement?</label>
-            <select>
+            <select >
                 <option value="0">Please Select</option>
                 <option value="100">100mm</option>
                 <option value="75">75mm</option>
             </select>
         </fieldset>
-        <button><a>Calculate</a></button>
+        <button>Calculate</button>
     </form>
 
-
+    <p>Given the length of fence needed: <?php echo $fence_length_input;?></p>
+    <p><?php echo $number_of_posts;?> POSTS</p>
+    <p><?php echo $number_of_panels;?> RAILINGS</p>
 
         <h3>Given the number of post and railings, what is the length of my fence:</h3>
     <form>
@@ -120,6 +117,9 @@ echo '<br>';
         <button><a>Calculate</a></button>
     </form>
 
+    <p>Based on the post and railing numbers provided:
+        <?php echo $post_number_input . ' Posts and ' . $panel_number_input . ' Panels.';?></p>
+    <p><?php echo 'The fence length will be: ' . $fence_length_result;?> POSTS</p>
 
 </body>
 </html>
