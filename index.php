@@ -39,6 +39,11 @@ $number_of_posts = $number_of_posts_check;
 $number_of_panels = $number_of_panels_check;
 $fence_length_result = fence_length_calc($post_width, $post_number_input, $panel_length, $panel_number_input);
 
+
+
+
+
+
 // DISPLAY TEST
 echo $number_of_posts . ' posts and ' . ' ' . $number_of_panels . ' panels needed based on a fence length requirement of ' . $fence_length_input . ' meters.';
 echo '<br>';
@@ -50,14 +55,72 @@ echo '<br>';
 //$number_of_panels = panel_calc($fence_length_mm, $panel_total_percentage, $panel_length);
 
 ?>
-<!--<!DOCTYPE html>-->
-<!--<html lang="en-GB">-->
-<!---->
-<!--<head>-->
-<!--    <title>Post and Panels!?</title>-->
-<!--</head>-->
-<!---->
-<!---->
-<!---->
-<!--</html>-->
+<!DOCTYPE html>
+<html lang="en-GB">
+
+<head>
+    <title>Post and Panels Challenge</title>
+
+</head>
+<body>
+    <h1>Calculate My Fence</h1>
+    <form>
+        <h3>Given the length of my fence, how many posts and railings needed:</h3>
+        <fieldset>
+            <label>What is the fence line in meters?</label>
+            <input type="number"/>
+        </fieldset>
+        <fieldset>
+            <label>What is the post measurement?</label>
+            <select>
+                <option value="0">Please Select</option>
+                <option value="1500">1500mm</option>
+                <option value="1200">1200mm</option>
+            </select>
+        </fieldset>
+        <fieldset>
+            <label>What is the rail measurement?</label>
+            <select>
+                <option value="0">Please Select</option>
+                <option value="100">100mm</option>
+                <option value="75">75mm</option>
+            </select>
+        </fieldset>
+        <button><a>Calculate</a></button>
+    </form>
+
+
+
+        <h3>Given the number of post and railings, what is the length of my fence:</h3>
+    <form>
+        <fieldset>
+            <label>What is the post measurement?</label>
+            <select>
+                <option value="0">Please Select</option>
+                <option value="1500">1500mm</option>
+                <option value="1200">1200mm</option>
+            </select>
+        </fieldset>
+        <fieldset>
+            <label>What is the rail measurement?</label>
+            <select>
+                <option value="0">Please Select</option>
+                <option value="100">100mm</option>
+                <option value="75">75mm</option>
+            </select>
+        </fieldset>
+        <fieldset>
+            <label>How many posts do you have?</label>
+            <input type="number">
+        </fieldset>
+                <fieldset>
+            <label>How many railings do you have?</label>
+            <input type="number">
+        </fieldset>
+        <button><a>Calculate</a></button>
+    </form>
+
+
+</body>
+</html>
 
