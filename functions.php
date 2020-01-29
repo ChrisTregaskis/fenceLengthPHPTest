@@ -1,5 +1,53 @@
 <?php
 
+
+//Check if inputs have data otherwise default inputs
+function check_fen_len_input() {
+    if(isset($_GET['fence_length_input'])) {
+        $fence_length = $_GET['fence_length_input'];
+    } else {
+        $fence_length = 100;
+    }
+    return $fence_length;
+}
+
+function check_pos_wid_input() {
+    if(isset($_GET['post_width_input'])) {
+        $post_width = $_GET['post_width_input'];
+    } else {
+        $post_width = 100;
+    }
+    return $post_width;
+}
+
+function check_pan_len_input() {
+    if(isset($_GET['panel_length_input'])) {
+        $panel_length = $_GET['panel_length_input'];
+    } else {
+        $panel_length = 1500;
+    }
+    return $panel_length;
+}
+
+function check_pos_num_input() {
+    if(isset($_GET['post_number_input'])) {
+        $post_number = $_GET['post_number_input'];
+    } else {
+        $post_number = 0;
+    }
+    return $post_number;
+}
+
+function check_pan_num_input() {
+    if(isset($_GET['panel_number_input'])) {
+        $panel_number = $_GET['panel_number_input'];
+    } else {
+        $panel_number = 0;
+    }
+    return $panel_number;
+}
+
+
 /**
  * FUNCTION to calc fence length FROM meters into mm
  * @param $f_len
@@ -9,6 +57,13 @@ function fence_calc_mm ($f_len) {
     $fen_len_mm = $f_len * 1000;
     return $fen_len_mm;
 }
+
+
+function calc_percentage($num, $total) {
+    $percentage = $num / $total;
+    return $percentage;
+}
+
 
 /**
  * FUNCTION calc FENCE length from number of posts and panels
