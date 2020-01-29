@@ -64,7 +64,6 @@ function calc_percentage($num, $total) {
     return $percentage;
 }
 
-
 /**
  * FUNCTION calc FENCE length from number of posts and panels
  * @param $pos_wid, post width
@@ -106,3 +105,10 @@ function panel_calc($f_len, $pan_total_per, $pan_len) {
     $num_of_panels = ($f_len * $pan_total_per) / $pan_len;
     return floor($num_of_panels);
 }
+
+function length_check($pos_num, $pos_wid, $pan_num, $pan_len) {
+    $length = ($pos_num * $pos_wid) + ($pan_num * $pan_len);
+    return $length;
+}
+
+
