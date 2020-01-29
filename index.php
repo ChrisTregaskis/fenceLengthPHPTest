@@ -16,18 +16,19 @@ $panel_number_input = check_pan_num_input();
 // calc fence length input into mm
 $fence_length_mm = fence_calc_mm($fence_length_input);
 
-// calc number of post and panel length in percentages
+// calc total post and panel length in percentages
 $post_panel_total = $post_width + $panel_length;
-$post_total_percentage = calc_percentage($post_width, $post_panel_total);
-$panel_total_percentage = calc_percentage($panel_length, $post_panel_total);
+$post_percentage = calc_percentage($post_width, $post_panel_total);
+$panel_percentage = calc_percentage($panel_length, $post_panel_total);
+
+// calc number of post and panels
+$post_calc_total = post_calc($fence_length_mm, $post_percentage, $post_width);
+$panel_calc_total = panel_calc($fence_length_mm, $panel_percentage, $panel_length);
 
 // check total length between post/panel and fence
-$post_calc_total = post_calc($fence_length_mm, $post_total_percentage, $post_width);
-$panel_calc_total = panel_calc($fence_length_mm, $panel_total_percentage, $panel_length);
+$length_check = length_check($post_calc_total, $post_width, $panel_calc_total, $panel_length);
 
-$post_panel_total_check = ($post_calc_total * $post_width) + ($panel_calc_total * $panel_length);
-
-if($post_panel_total_check < $fence_length_mm) {
+if($length_check < $fence_length_mm) {
     $number_of_posts_check = $post_calc_total + 1;
     $number_of_panels_check = $panel_calc_total + 1;
 }
@@ -36,15 +37,6 @@ if($post_panel_total_check < $fence_length_mm) {
 $number_of_posts = $number_of_posts_check;
 $number_of_panels = $number_of_panels_check;
 $fence_length_result = fence_length_calc($post_width, $post_number_input, $panel_length, $panel_number_input);
-
-// Potentionally use for the calculate button?
-function calculate_my_fence($num_of_pos, $num_of_pan) {
-    return ['number of posts' => $num_of_pos, 'number of panels' => $num_of_pan];
-}
-
-//Backup Result Call
-//$number_of_posts = post_calc($fence_length_mm, $post_total_percentage, $post_width);
-//$number_of_panels = panel_calc($fence_length_mm, $panel_total_percentage, $panel_length);
 
 
 
