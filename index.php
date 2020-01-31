@@ -3,13 +3,13 @@ require "functions.php";
 
 // INPUTS:
 // INDIVIDUAL length of post and panel in mm
-$post_width = check_pos_wid_input();
-$panel_length = check_pan_len_input();
+$post_width = check_input($_GET['post_width_input']);
+$panel_length = check_input($_GET['panel_length_input']);
 // total fence length input in meters
-$fence_length_input = check_fen_len_input();
+$fence_length_input = check_input($_GET['fence_length_input']);
 // total number of post & panel input
-$post_number_input = check_pos_num_input();
-$panel_number_input = check_pan_num_input();
+$post_number_input = check_number_input($_GET['post_number_input']);
+$panel_number_input = check_number_input($_GET['panel_number_input']);
 
 
 // calc fence length input into mm
@@ -53,11 +53,11 @@ var_dump($fence_length_mm);
 echo '<br>';
 echo '3. ' . $post_width;
 echo '<br>';
-var_dump(is_int($post_width));
+var_dump($post_width);
 echo '<br>';
 echo '4. ' . $post_panel_total;
 echo '<br>';
-var_dump(is_int($post_panel_total));
+var_dump($post_panel_total);
 echo '<br>';
 echo '5. ' . $post_percentage;
 echo '<br>';
@@ -94,6 +94,14 @@ echo '<br>';
 echo '13. ' . $number_of_panels;
 echo '<br>';
 var_dump($number_of_panels);
+echo '<br>';
+echo '14. ' . $post_number_input;
+echo '<br>';
+var_dump($post_number_input);
+echo '<br>';
+echo '15. ' . $panel_number_input;
+echo '<br>';
+var_dump($panel_number_input);
 
 ?>
 
@@ -115,6 +123,7 @@ var_dump($number_of_panels);
         <fieldset>
             <label>What is the rail length measurement?</label>
             <select name="panel_length_input">
+                <option value="0">Please select</option>
                 <option value="1500">1500mm</option>
                 <option value="1200">1200mm</option>
             </select>
@@ -122,6 +131,7 @@ var_dump($number_of_panels);
         <fieldset>
             <label>What is the post width measurement?</label>
             <select name="post_width_input">
+                <option value="0">Please select</option>
                 <option value="100">100mm</option>
                 <option value="75">75mm</option>
             </select>
@@ -129,15 +139,18 @@ var_dump($number_of_panels);
         <input type="submit">
     </form>
 
-    <p>Desired Fence Length: <?php echo $fence_length_input;?></p>
+    <p>Desired Fence Length: <?php echo $fence_length_input; echo ' meters'?></p>
     <p>POSTS: <?php echo $number_of_posts;?></p>
     <p>RAILINGS: <?php echo $number_of_panels;?></p>
+    <p>Rail length: <?php echo $panel_length; echo 'mm'?></p>
+    <p>Post width <?php echo $post_width; echo 'mm'?></p>
 
         <h3>Given the number of post and railings, what is the length of my fence:</h3>
     <form>
         <fieldset>
             <label>What is the rail length measurement?</label>
             <select name="panel_length_input">
+                <option value="0">Please select</option>
                 <option value="1500">1500mm</option>
                 <option value="1200">1200mm</option>
             </select>
@@ -145,6 +158,7 @@ var_dump($number_of_panels);
         <fieldset>
             <label>What is the post width measurement?</label>
             <select name="post_width_input">
+                <option value="0">Please select</option>
                 <option value="100">100mm</option>
                 <option value="75">75mm</option>
             </select>
@@ -163,7 +177,8 @@ var_dump($number_of_panels);
     <p>Based on the post and railing numbers provided:
         <?php echo $post_number_input . ' Posts and ' . $panel_number_input . ' Panels.';?></p>
     <p><?php echo 'The fence length will be: ' . $fence_length_result;?> meters</p>
-
+    <p>Rail length: <?php echo $panel_length; echo 'mm'?></p>
+    <p>Post width <?php echo $post_width; echo 'mm'?></p>
 </body>
 </html>
 
