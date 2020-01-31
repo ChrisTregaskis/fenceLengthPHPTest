@@ -1,6 +1,6 @@
 <?php
 
-//// --- INPUTS ---- ////
+//// ---- INPUTS ---- ////
 
 /**
  * FUNCTION checking input active and converting to int defaulting 100
@@ -40,13 +40,13 @@ function check_number_input ($input) {
 
 
 
-//// --- DESIRED FENCE LENGTH ---- ////
+//// ---- DESIRED FENCE LENGTH ---- ////
 
 
 /**
  * FUNCTION to calc fence length FROM meters into mm
  * @param $f_len
- * @return float|int
+ * @return float|int|string|null
  */
 function fence_calc_mm ($f_len) {
     if(is_int($f_len)) {
@@ -134,7 +134,14 @@ function length_check($pos_num, $pos_wid, $pan_num, $pan_len) {
     }
 }
 
-
+/**
+ * FUNCTION to collate the final count of posts, adding 1 post and rail if...
+ * ...total length falls under desired length
+ * @param $current_length
+ * @param $fence_length
+ * @param $current_num
+ * @return float|int|string
+ */
 function final_count($current_length, $fence_length, $current_num) {
     if (is_float($current_length) && is_int($fence_length) && is_float($current_num)) {
         if($current_length < $fence_length) {
@@ -152,7 +159,7 @@ function final_count($current_length, $fence_length, $current_num) {
 }
 
 
-//// --- KNOWN NUMBER = POST & PANEL ---- ////
+//// ---- KNOWN NUMBER = POST & PANEL ---- ////
 
 
 /**
@@ -165,11 +172,22 @@ function final_count($current_length, $fence_length, $current_num) {
  * @return int final fence length
  */
 function fence_length_calc($pos_wid, $pos_num, $pan_len, $pan_num) {
-    $fence_length = ($pos_wid * $pos_num) + ($pan_len * $pan_num);
-    $fence_length_final =  $fence_length / 1000;
-    return round($fence_length_final, 2);
+    if (is_int($pos_wid) && is_int($pos_num) && is_int($pan_len) && is_int($pan_num)) {
+        $fence_length = ($pos_wid * $pos_num) + ($pan_len * $pan_num);
+        $fence_length_final =  $fence_length / 1000;
+        return round($fence_length_final, 2);
+    } elseif ($pos_wid === null || $pos_num === null || $pan_len === null || $pan_num === null) {
+        return 0;
+    } else {
+        return 'error! expected integers and floats on fence_length_calc';
+    }
 }
 
 
+//// ---- DISPLAY RESULTS ---- ////
 
 
+// display function, meter
+//function display_meters($meter_input) {
+//    if
+//}
