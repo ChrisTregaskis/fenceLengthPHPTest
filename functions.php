@@ -3,24 +3,16 @@
 //// --- INPUTS ---- ////
 
 /**
- * FUNCTION to check if fence length input has data
- * @return int|mixed
+ * FUNCTION checking input active and converting to int defaulting 100
+ * @param $input, used for fence length and post width input
+ * @return float|int|string|null
  */
-//function check_fen_len_input():int {
-//    if(isset($_GET['fence_length_input'])) {
-//        $fence_length = $_GET['fence_length_input'];
-//    } else {
-//        $fence_length = 100;
-//    }
-//    return $fence_length;
-//}
-
-function check_fen_len_input() {
-    if(isset($_GET['fence_length_input'])) {
-        $input_returned = is_numeric($_GET['fence_length_input']) ?
-            $_GET['fence_length_input'] * 1 : $_GET['fence_length_input'];
+function check_input($input) {
+    if(isset($input)) {
+        $input_returned = is_numeric($input) ?
+            $input * 1 : $input;
         return $input_returned;
-    } elseif (isset($_GET['fence_length_input']) === false) {
+    } elseif (isset($input) === false) {
         return null;
     } else {
         return 'error! please input integer';
@@ -28,55 +20,22 @@ function check_fen_len_input() {
 }
 
 /**
- * FUNCTION to check if post width input has data
- * @return int|mixed
+ * FUNCTION check the number input is active and convert to int
+ * @param $input, used for known post & panel
+ * @return float|int|string|null
  */
-function check_pos_wid_input() {
-    if(isset($_GET['post_width_input'])) {
-        $post_width = $_GET['post_width_input'];
+function check_number_input ($input) {
+    if(isset($input)) {
+        $input_returned = is_numeric($input) ?
+            $input * 1 : $input;
+        return $input_returned;
+    } elseif (isset($input) === false) {
+        return 0;
+    } elseif (is_int(isset($input)) === false) {
+        return null;
     } else {
-        $post_width = 100;
+        return 'error! please input integer';
     }
-    return $post_width;
-}
-
-/**
- * FUNCTION to check if panel length input has data
- * @return int|mixed
- */
-function check_pan_len_input() {
-    if(isset($_GET['panel_length_input'])) {
-        $panel_length = $_GET['panel_length_input'];
-    } else {
-        $panel_length = 1500;
-    }
-    return $panel_length;
-}
-
-/**
- * FUNCTION to check if post number input has data
- * @return int|mixed
- */
-function check_pos_num_input() {
-    if(isset($_GET['post_number_input'])) {
-        $post_number = $_GET['post_number_input'];
-    } else {
-        $post_number = 0;
-    }
-    return $post_number;
-}
-
-/**
- * FUNCTION to check if panel number input has data
- * @return int|mixed
- */
-function check_pan_num_input() {
-    if(isset($_GET['panel_number_input'])) {
-        $panel_number = $_GET['panel_number_input'];
-    } else {
-        $panel_number = 0;
-    }
-    return $panel_number;
 }
 
 
@@ -92,7 +51,7 @@ function check_pan_num_input() {
 function fence_calc_mm ($f_len) {
     if(is_int($f_len)) {
         $fen_len_mm = $f_len * 1000;
-        return ceil($fen_len_mm);
+        return ($fen_len_mm);
     } elseif ($f_len === null) {
         return null;
     } else {
@@ -126,7 +85,7 @@ function calc_percentage($num, $total) {
  * @return float|int how many post's needed
  */
 function post_calc($f_len, $pos_total_per, $pos_wid) {
-    if (is_int($f_len && is_float($pos_total_per) && is_int($pos_wid))) {
+    if (is_int($f_len) && is_float($pos_total_per) && is_int($pos_wid)) {
         $num_of_posts = ($f_len * $pos_total_per) / $pos_wid;
         $num_of_posts_final = $num_of_posts + 1;
         return floor($num_of_posts_final);
@@ -146,7 +105,7 @@ function post_calc($f_len, $pos_total_per, $pos_wid) {
  * @return float how many panel's are needed
  */
 function panel_calc($f_len, $pan_total_per, $pan_len) {
-    if (is_int($f_len && is_float($pan_total_per) && is_int($pan_len))) {
+    if (is_int($f_len) && is_float($pan_total_per) && is_int($pan_len)) {
         $num_of_panels = ($f_len * $pan_total_per) / $pan_len;
         return floor($num_of_panels);
     } elseif ($f_len === null || $pan_total_per === null || $pan_len === null) {
@@ -165,7 +124,7 @@ function panel_calc($f_len, $pan_total_per, $pan_len) {
  * @return float|int
  */
 function length_check($pos_num, $pos_wid, $pan_num, $pan_len) {
-    if (is_int($pos_num && is_int($pos_wid && is_int($pan_num && is_int($pan_len))))) {
+    if (is_float($pos_num) && is_int($pos_wid) && is_float($pan_num) && is_int($pan_len)) {
         $length = ($pos_num * $pos_wid) + ($pan_num * $pan_len);
         return $length;
     } elseif ($pos_num === null || $pos_wid === null || $pan_num === null || $pan_len === null) {
@@ -177,7 +136,7 @@ function length_check($pos_num, $pos_wid, $pan_num, $pan_len) {
 
 
 function final_count($current_length, $fence_length, $current_num) {
-    if (is_int($current_length && is_int($fence_length) && is_int($current_num))) {
+    if (is_float($current_length) && is_int($fence_length) && is_float($current_num)) {
         if($current_length < $fence_length) {
             $final_count = $current_num + 1;
             return $final_count;
