@@ -31,17 +31,19 @@ $length_check = length_check($post_calc_total, $post_width, $panel_calc_total, $
 $final_count_posts = final_count($length_check, $fence_length_mm, $post_calc_total);
 $final_count_panels = final_count($length_check, $fence_length_mm, $panel_calc_total);
 
-//if($length_check < $fence_length_mm) {
-//    $number_of_posts_check = $post_calc_total + 1;
-//    $number_of_panels_check = $panel_calc_total + 1;
-//}
 
-// GET RESULTS
+// Get results
 $number_of_posts = $final_count_posts;
 $number_of_panels = $final_count_panels;
 $fence_length_result = fence_length_calc($post_width, $post_number_input, $panel_length, $panel_number_input);
 
+// Call display
 
+
+// need to disable the submit button until all fields are complete to avoid displaying math errors
+// OR capture 'NAN' moments and replace will 'null' (probably easier)
+
+// need to unit test! should be easier now we've accounted for malformed code and failure testing
 
 echo '1. ' . $fence_length_input;
 echo '<br>';
@@ -102,7 +104,6 @@ echo '<br>';
 echo '15. ' . $panel_number_input;
 echo '<br>';
 var_dump($panel_number_input);
-
 ?>
 
 <!DOCTYPE html>
