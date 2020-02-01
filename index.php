@@ -39,78 +39,9 @@ $number_of_panels = $final_count_panels;
 $fence_length_result = fence_length_calc($post_width, $post_number_input, $panel_length, $panel_number_input);
 
 
-// need to disable the submit button until all fields are complete to avoid displaying math errors
+// Want to disable the submit button until all fields are complete to avoid displaying math errors
 
 
-// need to unit test! should be easier now we've accounted for malformed code and failure testing
-
-echo '1. ' . $fence_length_input;
-echo '<br>';
-var_dump($fence_length_input);
-echo '<br>';
-echo '2. ' . $fence_length_mm;
-echo '<br>';
-var_dump($fence_length_mm);
-echo '<br>';
-echo '3. ' . $post_width;
-echo '<br>';
-var_dump($post_width);
-echo '<br>';
-echo '4. ' . $post_panel_total;
-echo '<br>';
-var_dump($post_panel_total);
-echo '<br>';
-echo '5. ' . $post_percentage;
-echo '<br>';
-var_dump($post_percentage);
-echo '<br>';
-echo '6. ' . $panel_percentage;
-echo '<br>';
-var_dump($panel_percentage);
-echo '<br>';
-echo '7. ' . $post_calc_total;
-echo '<br>';
-var_dump($post_calc_total);
-echo '<br>';
-echo '8. ' . $panel_calc_total;
-echo '<br>';
-var_dump($panel_calc_total);
-echo '<br>';
-echo '9. ' . $length_check;
-echo '<br>';
-var_dump($length_check);
-echo '<br>';
-echo '10. ' . $final_count_posts;
-echo '<br>';
-var_dump($final_count_posts);
-echo '<br>';
-echo '11. ' . $final_count_panels;
-echo '<br>';
-var_dump($final_count_panels);
-echo '<br>';
-echo '12. ' . $number_of_posts;
-echo '<br>';
-var_dump($number_of_posts);
-echo '<br>';
-echo '13. ' . $number_of_panels;
-echo '<br>';
-var_dump($number_of_panels);
-echo '<br>';
-echo '14. ' . $post_number_input;
-echo '<br>';
-var_dump($post_number_input);
-echo '<br>';
-echo '15. ' . $panel_number_input;
-echo '<br>';
-var_dump($panel_number_input);
-echo '<br>';
-echo '16. ' . $fence_length_result;
-echo '<br>';
-var_dump($fence_length_result);
-echo '<br>';
-echo '17. ' . $length_check;
-echo '<br>';
-var_dump($length_check);
 ?>
 
 <!DOCTYPE html>
