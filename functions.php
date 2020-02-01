@@ -10,34 +10,14 @@
 function check_input($input) {
     if(isset($input)) {
         $input_returned = is_numeric($input) ?
-            $input * 1 : $input;
+            $input * 1 : $input = 'error! please input integer';
         return $input_returned;
-    } elseif (isset($input) === false) {
-        return null;
-    } else {
-        return 'error! please input integer';
-    }
-}
-
-/**
- * FUNCTION check the number input is active and convert to int
- * @param $input, used for known post & panel
- * @return float|int|string|null
- */
-function check_number_input ($input) {
-    if(isset($input)) {
-        $input_returned = is_numeric($input) ?
-            $input * 1 : $input;
-        return $input_returned;
-    } elseif (isset($input) === false) {
+    } elseif (!(isset($input))) {
         return 0;
-    } elseif (is_int(isset($input)) === false) {
-        return null;
     } else {
         return 'error! please input integer';
     }
 }
-
 
 
 //// ---- DESIRED FENCE LENGTH ---- ////
@@ -66,18 +46,18 @@ function fence_calc_mm ($f_len) {
  * @return float|int
  */
 function calc_percentage($num, $total) {
-    if(is_int($num) && is_int($total)) {
+    if ($num === 0 || $total === 0 || $num === null || $total === null) {
+        return null;
+    } elseif (is_int($num) && is_int($total)) {
         $percentage = $num / $total;
         return floatval($percentage);
-    } elseif ($num === null || $total === null) {
-        return null;
     } else {
         return 'error! Expecting two integers on calc_per';
     }
 }
 
 /**
- * FUNCTION to calc number of POST
+ * FUNCTION return post total int number given inputs (sum + 1 to start AND end with post)
  * @param $f_len, is the known fence length
  * @param $pos_total_per, taken from the calculated post percentage
  * @param $pos_wid, taken from the known individual post width
@@ -116,11 +96,11 @@ function panel_calc($f_len, $pan_total_per, $pan_len) {
 }
 
 /**
- * FUNCTION to calc total length of post and panel
- * @param $pos_num
- * @param $pos_wid
- * @param $pan_num
- * @param $pan_len
+ * FUNCTION return total length of post and panels in mm given the numbers and length
+ * @param $pos_num, calculated number posts
+ * @param $pos_wid, known width in mm
+ * @param $pan_num, calculated number panels
+ * @param $pan_len, known length in mm
  * @return float|int
  */
 function length_check($pos_num, $pos_wid, $pan_num, $pan_len) {
@@ -184,10 +164,4 @@ function fence_length_calc($pos_wid, $pos_num, $pan_len, $pan_num) {
 }
 
 
-//// ---- DISPLAY RESULTS ---- ////
 
-
-// display function, meter
-//function display_meters($meter_input) {
-//    if
-//}
