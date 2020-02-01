@@ -104,8 +104,6 @@ class Stacktests extends TestCase
         $this->assertEquals($expected, $case);
     }
 
-    //MALFORMED calc_percentage: ?
-
 
     //// ---- post_calc ---- ////
 
@@ -144,8 +142,6 @@ class Stacktests extends TestCase
         $this->assertEquals($expected, $case);
     }
 
-    //MALFORMED post_calc: ?
-
 
     //// ---- panel_calc ---- ////
 
@@ -182,8 +178,6 @@ class Stacktests extends TestCase
         $case = panel_calc($input1, $input2, $input3);
         $this->assertEquals($expected, $case);
     }
-
-    //MALFORMED panel_calc: ?
 
 
     //// ---- length_check ---- ////
@@ -225,7 +219,6 @@ class Stacktests extends TestCase
         $this->assertEquals($expected, $case);
     }
 
-    //MALFORMED length_check: ?
 
 
     //// ---- final_count ---- ////
@@ -275,8 +268,6 @@ class Stacktests extends TestCase
         $this->assertEquals($expected, $case);
     }
 
-    //MALFORMED final_count: ?
-
 
     //// ---- fence_length_calc ---- ////
 
@@ -318,5 +309,4 @@ class Stacktests extends TestCase
         $this->assertEquals($expected, $case);
     }
 
-    //MALFORMED fence_length_calc: ?
 }
