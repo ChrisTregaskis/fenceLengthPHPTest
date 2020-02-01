@@ -1,7 +1,5 @@
 <?php
 
-//// ---- INPUTS ---- ////
-
 /**
  * FUNCTION checking input active and converting to int defaulting 100
  * @param $input, used for fence length and post width input
@@ -18,10 +16,6 @@ function check_input($input) {
         return 'error! please input integer';
     }
 }
-
-
-//// ---- DESIRED FENCE LENGTH ---- ////
-
 
 /**
  * FUNCTION to calc fence length FROM meters into mm
@@ -137,10 +131,6 @@ function final_count($current_length, $fence_length, $current_num) {
         return 'error! expected integers on final_count';
     }
 }
-
-
-//// ---- KNOWN NUMBER = POST & PANEL ---- ////
-
 
 /**
  * FUNCTION calc FENCE length from number of posts and panels
