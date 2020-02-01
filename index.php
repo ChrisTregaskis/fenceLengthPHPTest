@@ -1,5 +1,6 @@
 <?php
-require "functions.php";
+require_once "functions.php";
+
 
 // INPUTS:
 // INDIVIDUAL length of post and panel in mm
@@ -8,8 +9,8 @@ $panel_length = check_input($_GET['panel_length_input']);
 // total fence length input in meters
 $fence_length_input = check_input($_GET['fence_length_input']);
 // total number of post & panel input
-$post_number_input = check_number_input($_GET['post_number_input']);
-$panel_number_input = check_number_input($_GET['panel_number_input']);
+$post_number_input = check_input($_GET['post_number_input']);
+$panel_number_input = check_input($_GET['panel_number_input']);
 
 
 // calc fence length input into mm
@@ -37,11 +38,9 @@ $number_of_posts = $final_count_posts;
 $number_of_panels = $final_count_panels;
 $fence_length_result = fence_length_calc($post_width, $post_number_input, $panel_length, $panel_number_input);
 
-// Call display
-
 
 // need to disable the submit button until all fields are complete to avoid displaying math errors
-// OR capture 'NAN' moments and replace will 'null' (probably easier)
+
 
 // need to unit test! should be easier now we've accounted for malformed code and failure testing
 
@@ -104,6 +103,14 @@ echo '<br>';
 echo '15. ' . $panel_number_input;
 echo '<br>';
 var_dump($panel_number_input);
+echo '<br>';
+echo '16. ' . $fence_length_result;
+echo '<br>';
+var_dump($fence_length_result);
+echo '<br>';
+echo '17. ' . $length_check;
+echo '<br>';
+var_dump($length_check);
 ?>
 
 <!DOCTYPE html>
@@ -111,11 +118,14 @@ var_dump($panel_number_input);
 
 <head>
     <title>Post and Panels Challenge</title>
+    <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript" src="formValidation.js"></script>
+
 
 </head>
 <body>
     <h1>Calculate My Fence</h1>
-    <form method="get">
+    <form method="get" id="validate_form_top">
         <h3>Given the length of my fence, how many posts and railings needed:</h3>
         <fieldset>
             <label>What is the fence line in meters?</label>
@@ -140,11 +150,12 @@ var_dump($panel_number_input);
         <input type="submit">
     </form>
 
-    <p>Desired Fence Length: <?php echo $fence_length_input; echo ' meters'?></p>
+    <p>Desired Fence Length in meters: <?php echo $fence_length_input;?></p>
+    <p>Rail length selected: <?php echo $panel_length; echo 'mm'?></p>
+    <p>Post width selected: <?php echo $post_width; echo 'mm'?></p>
     <p>POSTS: <?php echo $number_of_posts;?></p>
     <p>RAILINGS: <?php echo $number_of_panels;?></p>
-    <p>Rail length: <?php echo $panel_length; echo 'mm'?></p>
-    <p>Post width <?php echo $post_width; echo 'mm'?></p>
+
 
         <h3>Given the number of post and railings, what is the length of my fence:</h3>
     <form>
@@ -177,9 +188,11 @@ var_dump($panel_number_input);
 
     <p>Based on the post and railing numbers provided:
         <?php echo $post_number_input . ' Posts and ' . $panel_number_input . ' Panels.';?></p>
-    <p><?php echo 'The fence length will be: ' . $fence_length_result;?> meters</p>
+    <p><?php echo 'The fence length in meters will be: ' . $fence_length_result;?> </p>
     <p>Rail length: <?php echo $panel_length; echo 'mm'?></p>
     <p>Post width <?php echo $post_width; echo 'mm'?></p>
+
+
 </body>
 </html>
 
