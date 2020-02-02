@@ -1,5 +1,8 @@
 <?php
 
+
+
+
 /**
  * FUNCTION checking input active and converting to int defaulting 100
  * @param $input, used for fence length and post width input
