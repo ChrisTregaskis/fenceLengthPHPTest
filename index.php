@@ -1,48 +1,38 @@
 <?php
 require_once "functions.php";
 
-// empty variables for required field handling
-$post_err = $panel_err = $fence_err = $post_num_err = $panel_num_err = "";
-$pw_check = $pl_check = $fl_check = $pol_check = $pal_check = "";
+//cheekyFunction();
 
 // INPUTS:
-// INDIVIDUAL length of post and panel in mm
+// MM
 $post_width = check_input($_POST['post_width_input']);
 $panel_length = check_input($_POST['panel_length_input']);
-// total fence length input in meters
+// METERS
 $fence_length_input = check_input($_POST['fence_length_input']);
-// total number of post & panel input
 $post_number_input = check_input($_POST['post_number_input']);
 $panel_number_input = check_input($_POST['panel_number_input']);
 
-
 // calc fence length input into mm
 $fence_length_mm = fence_calc_mm($fence_length_input);
-
 // calc total post and panel length in percentages
 $post_panel_total = $post_width + $panel_length;
 $post_percentage = calc_percentage($post_width, $post_panel_total);
 $panel_percentage = calc_percentage($panel_length, $post_panel_total);
-
 // transform post and panel percentages into numbers
 $post_calc_total = post_calc($fence_length_mm, $post_percentage, $post_width);
 $panel_calc_total = panel_calc($fence_length_mm, $panel_percentage, $panel_length);
-
 // ensure post/panel >= desired fence length
 $length_check = length_check($post_calc_total, $post_width, $panel_calc_total, $panel_length);
-
-
 $final_count_posts = final_count($length_check, $fence_length_mm, $post_calc_total);
 $final_count_panels = final_count($length_check, $fence_length_mm, $panel_calc_total);
-
-
 // Get results
 $number_of_posts = $final_count_posts;
 $number_of_panels = $final_count_panels;
 $fence_length_result = fence_length_calc($post_width, $post_number_input, $panel_length, $panel_number_input);
 
-
-// Turn below into function and call at the beginning
+// empty variables for required field handling
+$post_err = $panel_err = $fence_err = $post_num_err = $panel_num_err = "";
+$pw_check = $pl_check = $fl_check = $pol_check = $pal_check = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($_POST["post_width_input"])) {
@@ -99,14 +89,14 @@ function test_input($data) {
         <p><span class="error">All fields required before submitting</span></p>
         <fieldset>
             <label>What is the fence line in meters?</label>
-            <input type="int" name="fence_length_input"/>
+            <input type="number" name="fence_length_input" required/>
             <span class="error">* <?php echo $fence_err;?></span>
         </fieldset>
         <fieldset>
             <label>What is the rail length measurement?</label>
-            <select name="panel_length_input">
+            <select name="panel_length_input" required>
                 <option value="0">Please select</option>
-                <option value="1500">1500mm</option>
+                <option value="1500">1500mm </option>
                 <option value="1200">1200mm</option>
             </select>
             <span class="error">* <?php echo $panel_err;?></span>
@@ -173,3 +163,16 @@ function test_input($data) {
 </body>
 </html>
 
+<?php
+
+//if (!empty($_POST)) {
+//    if (isset($_POST['post_width_input'])) {
+//        $post_width = check_input($_POST['post_width_input']);
+//    }
+//    $panel_length = check_input($_POST['panel_length_input']);
+//    // total fence length input in meters
+//    $fence_length_input = check_input($_POST['fence_length_input']);
+//    // total number of post & panel input
+//    $post_number_input = check_input($_POST['post_number_input']);
+//    $panel_number_input = check_input($_POST['panel_number_input']);
+//}}

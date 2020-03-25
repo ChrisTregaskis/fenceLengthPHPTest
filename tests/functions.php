@@ -36,14 +36,13 @@ class Stacktests extends TestCase
         $this->assertEquals($expected, $case);
     }
 
-    //MALFORMED check_input: return error if array passed ??
-    public  function test_m_input_r_err()
-    {
-        $expected = 'error! please input integer';
-        $input = ['0'];
-        $case = check_input($input);
-        $this->assertEquals($expected, $case);
-    }
+//    //MALFORMED check_input: return error if array passed ??
+//    public  function test_m_input_r_err()
+//    {
+//        $this->expectException(TypeError::class);
+//        $input = ['o'];
+//        $case = check_input($input);
+//    }
 
 
     //// ---- fence_calc_mm ---- ////
