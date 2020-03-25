@@ -1,7 +1,7 @@
 <?php
 require_once "functions.php";
 
-//cheekyFunction();
+cheekyFunction();
 
 // INPUTS:
 // MM
