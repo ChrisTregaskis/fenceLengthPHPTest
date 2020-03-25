@@ -30,47 +30,47 @@ $number_of_posts = $final_count_posts;
 $number_of_panels = $final_count_panels;
 $fence_length_result = fence_length_calc($post_width, $post_number_input, $panel_length, $panel_number_input);
 
-// empty variables for required field handling
-$post_err = $panel_err = $fence_err = $post_num_err = $panel_num_err = "";
-$pw_check = $pl_check = $fl_check = $pol_check = $pal_check = "";
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if (empty($_POST["post_width_input"])) {
-        $post_err = "Post width is required";
-    } else {
-        $pw_check = test_input($_POST["post_width_input"]);
-    }
-
-    if (empty($_POST["panel_length_input"])) {
-        $panel_err = "Rail length is required";
-    } else {
-        $pl_check = test_input($_POST["panel_length_input"]);
-    }
-
-    if (empty($_POST["fence_length_input"])) {
-        $fence_err = "Fence length is required";
-    } else {
-        $fl_check = test_input($_POST["fence_length_input"]);
-    }
-
-    if (empty($_POST["post_number_input"])) {
-        $post_num_err = "Post number is required";
-    } else {
-        $pol_check = test_input($_POST["post_number_input"]);
-    }
-
-    if (empty($_POST["panel_number_input"])) {
-        $panel_num_err = "Rail number is required";
-    } else {
-        $pal_check = test_input($_POST["panel_number_input"]);
-    }
-}
-
-function test_input($data) {
-    $data = trim($data);
-    $data = stripslashes($data);
-    return $data;
-}
+//// empty variables for required field handling
+//$post_err = $panel_err = $fence_err = $post_num_err = $panel_num_err = "";
+//$pw_check = $pl_check = $fl_check = $pol_check = $pal_check = "";
+//
+//if ($_SERVER["REQUEST_METHOD"] == "POST") {
+//    if (empty($_POST["post_width_input"])) {
+//        $post_err = "Post width is required";
+//    } else {
+//        $pw_check = test_input($_POST["post_width_input"]);
+//    }
+//
+//    if (empty($_POST["panel_length_input"])) {
+//        $panel_err = "Rail length is required";
+//    } else {
+//        $pl_check = test_input($_POST["panel_length_input"]);
+//    }
+//
+//    if (empty($_POST["fence_length_input"])) {
+//        $fence_err = "Fence length is required";
+//    } else {
+//        $fl_check = test_input($_POST["fence_length_input"]);
+//    }
+//
+//    if (empty($_POST["post_number_input"])) {
+//        $post_num_err = "Post number is required";
+//    } else {
+//        $pol_check = test_input($_POST["post_number_input"]);
+//    }
+//
+//    if (empty($_POST["panel_number_input"])) {
+//        $panel_num_err = "Rail number is required";
+//    } else {
+//        $pal_check = test_input($_POST["panel_number_input"]);
+//    }
+//}
+//
+//function test_input($data) {
+//    $data = trim($data);
+//    $data = stripslashes($data);
+//    return $data;
+//}
 
 ?>
 
